@@ -1,0 +1,22 @@
+{
+  "name": "server",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy --minify",
+    "cf-typegen": "wrangler types --env-interface CloudflareBindings"
+  },
+  "dependencies": {
+    "@hono/zod-validator": "^0.7.2",
+    "@planetscale/database": "^1.19.0",
+    "drizzle-orm": "^0.44.5",
+    "hono": "^4.9.6",
+    "zod": "^4.1.7"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250911.0",
+    "drizzle-kit": "^0.31.4",
+    "typescript": "^5.9.2",
+    "wrangler": "^4.35.0"
+  }
+}
