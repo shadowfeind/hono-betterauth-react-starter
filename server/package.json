@@ -5,12 +5,14 @@
     "dev": "wrangler dev",
     "deploy": "wrangler deploy --minify",
     "cf-typegen": "wrangler types --env-interface CloudflareBindings",
+     "db:gen": "drizzle-kit generate",
+    "db:push": "drizzle-kit push",
     "lint": "eslint . --ext .ts --max-warnings 0",
     "lint:fix": "eslint . --ext .ts --fix"
   },
   "dependencies": {
     "@hono/zod-validator": "^0.7.2",
-    "@planetscale/database": "^1.19.0",
+    "@neondatabase/serverless": "^1.0.1",
     "drizzle-orm": "^0.44.5",
     "hono": "^4.9.6",
     "zod": "^4.1.7"
