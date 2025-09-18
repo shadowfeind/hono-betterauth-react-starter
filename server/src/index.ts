@@ -5,7 +5,7 @@ import { sql } from "drizzle-orm";
 
 const app = new CustomHono();
 
-app.get("/health", async (c) => {
+app.get("/api/health", async (c) => {
   try {
     const db = createDb(c.env.DATABASE_URL);
     await db.execute(sql`SELECT 1`);
@@ -16,6 +16,10 @@ app.get("/health", async (c) => {
   }
 });
 
-app.route("/test", test);
+app.get("/api/env-check", (c) => {
+  return c.text(c.env.DATABASE_URL ?? "DATABASE_URL is missing");
+});
+
+app.route("/api/test", test);
 
 export default app;

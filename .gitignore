@@ -14,6 +14,7 @@ client/*.log
 
 # Env files
 server/.env
+server/.dev.vars
 client/.env
 
 # OS junk
