@@ -1,0 +1,2 @@
+DATABASE_URL='my neon db url'
+BETTER_AUTH_SECRET='mysecret'
