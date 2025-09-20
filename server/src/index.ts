@@ -2,10 +2,15 @@ import { CustomHono } from "@/types/hono";
 import test from "@/features/test";
 import { createDb } from "@/db/db";
 import { sql } from "drizzle-orm";
+import { createAuth } from "./auth";
 
-const app = new CustomHono();
+const app = new CustomHono().basePath("/api");
 
-app.get("/api/health", async (c) => {
+app.on(["POST", "GET"], "/auth/*", (c) => {
+  return createAuth(c.env).handler(c.req.raw);
+});
+
+app.get("/health", async (c) => {
   try {
     const db = createDb(c.env.DATABASE_URL);
     await db.execute(sql`SELECT 1`);
@@ -16,10 +21,6 @@ app.get("/api/health", async (c) => {
   }
 });
 
-app.get("/api/env-check", (c) => {
-  return c.text(c.env.DATABASE_URL ?? "DATABASE_URL is missing");
-});
-
-app.route("/api/test", test);
+app.route("/test", test);
 
 export default app;
