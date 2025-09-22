@@ -14,12 +14,16 @@ import { SocialLoginButtons } from "./component/social-login-buttons";
 import { LoginForm } from "./component/Login-form";
 import { RegisterForm } from "./component/Register-form";
 import { ForgotForm } from "./component/Forgot-form";
+import { ModeToggle } from "@/components/mode-toggle";
 
 const Login = () => {
   const [activeTab, setActiveTab] = useState("login");
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background p-4">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-background p-4">
+      <div className="flex justify-end p-4">
+        <ModeToggle />
+      </div>
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl font-bold text-center">
