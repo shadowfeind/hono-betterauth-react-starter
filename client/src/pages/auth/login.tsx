@@ -9,7 +9,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useState } from "react";
-import { SocialLoginButtons } from "./social-login-buttons";
+import { SocialLoginButtons } from "./component/social-login-buttons";
 
 import { LoginForm } from "./component/Login-form";
 import { RegisterForm } from "./component/Register-form";
