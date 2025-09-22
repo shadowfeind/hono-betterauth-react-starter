@@ -11,10 +11,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useState } from "react";
 import { SocialLoginButtons } from "./component/social-login-buttons";
 
-import { LoginForm } from "./component/Login-form";
-import { RegisterForm } from "./component/Register-form";
-import { ForgotForm } from "./component/Forgot-form";
+import { LoginForm } from "./component/login-form";
+import { ForgotForm } from "./component/forgot-form";
 import { ModeToggle } from "@/components/mode-toggle";
+import { RegisterForm } from "./component/register-form";
 
 const Login = () => {
   const [activeTab, setActiveTab] = useState("login");

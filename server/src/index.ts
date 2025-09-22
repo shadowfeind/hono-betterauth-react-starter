@@ -3,8 +3,22 @@ import test from "@/features/test";
 import { createDb } from "@/db/db";
 import { sql } from "drizzle-orm";
 import { createAuth } from "./auth";
+// import { cors } from "hono/cors";
 
 const app = new CustomHono().basePath("/api");
+
+// app.use(
+//   "*",
+//   cors({
+//     origin: (origin) => {
+//       const allowed = ["http://localhost:5173"];
+//       return origin && allowed.includes(origin) ? origin : "";
+//     },
+//     allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+//     allowHeaders: ["Content-Type", "Authorization"],
+//     credentials: true,
+//   })
+// );
 
 app.on(["POST", "GET"], "/auth/*", (c) => {
   return createAuth(c.env).handler(c.req.raw);

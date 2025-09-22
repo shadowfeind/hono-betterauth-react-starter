@@ -27,5 +27,6 @@ export const createAuth = (env: CloudflareBindings) => {
       },
     },
     plugins: [openAPI()],
+    trustedOrigins: ["http://localhost:5173"],
   });
 };
