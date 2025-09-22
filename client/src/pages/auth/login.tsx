@@ -14,22 +14,15 @@ import { Eye, EyeOff, Lock, Mail, User } from "lucide-react";
 import { useState } from "react";
 import { SocialLoginButtons } from "./social-login-buttons";
 import { useForm } from "react-hook-form";
-
-type LoginFormData = {
-  email: string;
-  password: string;
-};
-
-type RegisterFormData = {
-  name: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-};
-
-type ForgotPasswordFormData = {
-  email: string;
-};
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  ForgotPasswordSchema,
+  LoginSchema,
+  RegisterSchema,
+  type ForgotPasswordSchemaType,
+  type LoginSchemaType,
+  type RegisterSchemaType,
+} from "./auth.schema";
 
 const Login = () => {
   const [activeTab, setActiveTab] = useState("login");
@@ -37,11 +30,30 @@ const Login = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const loginForm = useForm<LoginFormData>();
-  const registerForm = useForm<RegisterFormData>();
-  const forgotPasswordForm = useForm<ForgotPasswordFormData>();
+  const loginForm = useForm<LoginSchemaType>({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+    resolver: zodResolver(LoginSchema),
+  });
+  const registerForm = useForm<RegisterSchemaType>({
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+    resolver: zodResolver(RegisterSchema),
+  });
+  const forgotPasswordForm = useForm<ForgotPasswordSchemaType>({
+    defaultValues: {
+      email: "",
+    },
+    resolver: zodResolver(ForgotPasswordSchema),
+  });
 
-  const onLoginSubmit = async (data: LoginFormData) => {
+  const onLoginSubmit = async (data: LoginSchemaType) => {
     setIsLoading(true);
     try {
       // Handle login logic here
@@ -54,7 +66,7 @@ const Login = () => {
     }
   };
 
-  const onRegisterSubmit = async (data: RegisterFormData) => {
+  const onRegisterSubmit = async (data: RegisterSchemaType) => {
     if (data.password !== data.confirmPassword) {
       registerForm.setError("confirmPassword", {
         type: "manual",
@@ -75,7 +87,7 @@ const Login = () => {
     }
   };
 
-  const onForgotPasswordSubmit = async (data: ForgotPasswordFormData) => {
+  const onForgotPasswordSubmit = async (data: ForgotPasswordSchemaType) => {
     setIsLoading(true);
     try {
       // Handle forgot password logic here

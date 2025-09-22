@@ -1,13 +1,9 @@
-import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Apple, Github } from "lucide-react";
+import { useIsMac } from "@/hooks/useIsMac";
 
 export function SocialLoginButtons() {
-  const [isMac, setIsMac] = useState(false);
-
-  useEffect(() => {
-    setIsMac(navigator.platform.toUpperCase().indexOf("MAC") >= 0);
-  }, []);
+  const isMac = useIsMac();
 
   const handleSocialLogin = (provider: string) => {
     console.log(`Login with ${provider}`);
