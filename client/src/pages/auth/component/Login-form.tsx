@@ -6,32 +6,26 @@ import { Eye, EyeOff, Lock, Mail } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { useLoginMutation } from "../queries/loginQuery";
 
 type Props = {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
 };
 export const LoginForm = ({ setActiveTab }: Props) => {
   const [showPassword, setShowPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const { mutate, isPending } = useLoginMutation();
   const loginForm = useForm<LoginSchemaType>({
     defaultValues: {
       email: "",
       password: "",
+      rememberMe: false,
     },
     resolver: zodResolver(LoginSchema),
   });
 
   const onLoginSubmit = async (data: LoginSchemaType) => {
-    setIsLoading(true);
-    try {
-      // Handle login logic here
-      console.log("Login data:", data);
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate API call
-    } catch (error) {
-      console.error("Login error:", error);
-    } finally {
-      setIsLoading(false);
-    }
+    mutate(data);
   };
 
   return (
@@ -48,13 +42,7 @@ export const LoginForm = ({ setActiveTab }: Props) => {
             type="email"
             placeholder="Enter your email"
             className="pl-10"
-            {...loginForm.register("email", {
-              required: "Email is required",
-              pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: "Invalid email address",
-              },
-            })}
+            {...loginForm.register("email")}
           />
         </div>
         {loginForm.formState.errors.email && (
@@ -73,13 +61,7 @@ export const LoginForm = ({ setActiveTab }: Props) => {
             type={showPassword ? "text" : "password"}
             placeholder="Enter your password"
             className="pl-10 pr-10"
-            {...loginForm.register("password", {
-              required: "Password is required",
-              minLength: {
-                value: 6,
-                message: "Password must be at least 6 characters",
-              },
-            })}
+            {...loginForm.register("password")}
           />
           <Button
             type="button"
@@ -102,7 +84,11 @@ export const LoginForm = ({ setActiveTab }: Props) => {
         )}
       </div>
 
-      <div className="flex justify-end">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center space-x-2">
+          <Checkbox id="remember-me" {...loginForm.register("rememberMe")} />
+          <Label htmlFor="remember-me">Remember me</Label>
+        </div>
         <Button
           type="button"
           variant="link"
@@ -113,8 +99,8 @@ export const LoginForm = ({ setActiveTab }: Props) => {
         </Button>
       </div>
 
-      <Button type="submit" className="w-full" disabled={isLoading}>
-        {isLoading ? "Signing in..." : "Sign In"}
+      <Button type="submit" className="w-full" disabled={isPending}>
+        {isPending ? "Signing in..." : "Sign In"}
       </Button>
     </form>
   );

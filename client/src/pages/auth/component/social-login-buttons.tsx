@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Apple, Github } from "lucide-react";
-import { useIsMac } from "@/hooks/useIsMac";
+import { useIsApple } from "@/hooks/useIsApple";
 
 export function SocialLoginButtons() {
-  const isMac = useIsMac();
+  const isApple = useIsApple();
 
   const handleSocialLogin = (provider: string) => {
     console.log(`Login with ${provider}`);
@@ -61,7 +61,7 @@ export function SocialLoginButtons() {
         GitHub
       </Button>
 
-      {isMac && (
+      {isApple && (
         <Button
           type="button"
           variant="outline"
@@ -73,7 +73,7 @@ export function SocialLoginButtons() {
         </Button>
       )}
 
-      {!isMac && (
+      {!isApple && (
         <Button
           type="button"
           variant="outline"
