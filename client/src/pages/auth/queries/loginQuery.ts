@@ -3,11 +3,13 @@ import { useNavigate } from "@tanstack/react-router";
 import { LoginSchema } from "../auth.schema";
 import { z } from "zod";
 import { toast } from "sonner";
+import { useAuthStore } from "@/store/authStore";
 
 type LoginInput = z.infer<typeof LoginSchema>;
 
 export const useLoginMutation = () => {
   const navigate = useNavigate();
+  const { setAuth } = useAuthStore();
 
   const callbackURL =
     import.meta.env.VITE_BETTER_AUTH_CALLBACK_URL || window.location.origin;
@@ -29,8 +31,9 @@ export const useLoginMutation = () => {
 
       return response.json();
     },
-    onSuccess: () => {
-      navigate({ to: "/" });
+    onSuccess: (data) => {
+      setAuth(data);
+      navigate({ to: "/profile" });
       toast.success("Successfully Logged In");
     },
     onError: (error) => {

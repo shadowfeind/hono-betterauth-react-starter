@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { LoginSchema, type LoginSchemaType } from "../auth.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Label } from "@/components/ui/label";
@@ -86,7 +86,17 @@ export const LoginForm = ({ setActiveTab }: Props) => {
 
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-2">
-          <Checkbox id="remember-me" {...loginForm.register("rememberMe")} />
+          <Controller
+            control={loginForm.control}
+            name="rememberMe"
+            render={({ field }) => (
+              <Checkbox
+                id="remember-me"
+                checked={field.value}
+                onCheckedChange={field.onChange}
+              />
+            )}
+          />
           <Label htmlFor="remember-me">Remember me</Label>
         </div>
         <Button
