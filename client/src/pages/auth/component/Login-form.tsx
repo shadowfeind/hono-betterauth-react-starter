@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { useLoginMutation } from "../queries/loginQuery";
+import { useLoginMutation } from "../queries/login-query";
 
 type Props = {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;

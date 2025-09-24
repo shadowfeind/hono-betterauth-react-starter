@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { RegisterSchema, type RegisterSchemaType } from "../auth.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRegisterMutation } from "../queries/registerQuery"; // Import the mutation hook
+import { useRegisterMutation } from "../queries/register-query"; // Import the mutation hook
 
 export const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);

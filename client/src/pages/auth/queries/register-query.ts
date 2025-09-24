@@ -3,7 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import { RegisterSchema } from "../auth.schema";
 import { z } from "zod";
 import { toast } from "sonner";
-import { useLoginMutation } from "./loginQuery";
+import { useLoginMutation } from "./login-query";
 
 type RegisterInput = z.infer<typeof RegisterSchema>;
 

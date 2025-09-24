@@ -1,3 +1,4 @@
+import { useLogout } from "@/pages/auth/queries/logout-query";
 import { useAuthStore } from "@/store/authStore";
 import { createFileRoute } from "@tanstack/react-router";
 
@@ -7,6 +8,9 @@ export const Route = createFileRoute("/_authenticated/profile")({
 
 function ProfileComponent() {
   const { user } = useAuthStore();
+  const { mutate, isPending } = useLogout();
+
+  const handleLogout = () => mutate();
 
   return (
     <div className="p-4">
@@ -33,6 +37,13 @@ function ProfileComponent() {
           </p>
         </div>
       )}
+      <button
+        onClick={handleLogout}
+        className="mt-4 bg-red-500 text-white p-2 rounded"
+        disabled={isPending}
+      >
+        {isPending ? "Logging out..." : "Logout"}
+      </button>
     </div>
   );
 }

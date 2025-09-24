@@ -1,17 +1,7 @@
-import { useAuthStore } from "@/store/authStore";
-import { createFileRoute, redirect, Outlet } from "@tanstack/react-router";
+import { forbidUnAuthenticated } from "@/lib/route-guard";
+import { createFileRoute, Outlet } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_authenticated")({
-  loader: () => {
-    const { token } = useAuthStore.getState();
-    console.log({ token });
-
-    if (!token) {
-      throw redirect({
-        to: "/auth",
-      });
-    }
-  },
-
+  loader: forbidUnAuthenticated,
   component: () => <Outlet />,
 });
