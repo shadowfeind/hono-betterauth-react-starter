@@ -3,7 +3,7 @@ import { useNavigate } from "@tanstack/react-router";
 import { LoginSchema } from "../auth.schema";
 import { z } from "zod";
 import { toast } from "sonner";
-import { useAuthStore } from "@/store/authStore";
+import { useAuthStore } from "@/store/auth-store";
 
 type LoginInput = z.infer<typeof LoginSchema>;
 

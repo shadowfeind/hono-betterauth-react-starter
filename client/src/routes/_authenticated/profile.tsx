@@ -1,5 +1,5 @@
 import { useLogout } from "@/pages/auth/queries/logout-query";
-import { useAuthStore } from "@/store/authStore";
+import { useAuthStore } from "@/store/auth-store";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_authenticated/profile")({

@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { devtools, persist } from "zustand/middleware";
+import { devtools } from "zustand/middleware";
 
 export type User = {
   id: string;
@@ -20,19 +20,13 @@ type AuthState = {
 
 export const useAuthStore = create<AuthState>()(
   devtools(
-    persist(
-      (set) => ({
-        token: null,
-        user: null,
-        setAuth: (auth) => set({ token: auth.token, user: auth.user }),
-        clearAuth: () => set({ token: null, user: null }),
-      }),
-      {
-        name: "auth",
-        version: 1,
-        partialize: (s) => ({ token: s.token, user: s.user }),
-      }
-    ),
+    (set) => ({
+      token: null,
+      user: null,
+      setAuth: (auth) => set({ token: auth.token, user: auth.user }),
+      clearAuth: () => set({ token: null, user: null }),
+    }),
+
     { name: "auth-store" }
   )
 );
