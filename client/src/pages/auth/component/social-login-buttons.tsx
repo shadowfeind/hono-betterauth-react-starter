@@ -6,8 +6,11 @@ export function SocialLoginButtons() {
   const isApple = useIsApple();
 
   const handleSocialLogin = (provider: string) => {
-    console.log(`Login with ${provider}`);
-    // Implement social login logic here
+    const redirectTo = `${window.location.origin}/auth/callback`;
+    const url = `/api/auth/sign-in/${provider}?redirectTo=${encodeURIComponent(
+      redirectTo
+    )}`;
+    window.location.assign(url);
   };
 
   return (
