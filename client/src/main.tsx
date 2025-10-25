@@ -9,9 +9,13 @@ import { routeTree } from "./routeTree.gen";
 import { ThemeProvider } from "./context/theme-context";
 
 // Create a new router instance
-const router = createRouter({ routeTree });
-
+// 2) Create the router WITH context
 const queryClient = new QueryClient();
+
+const router = createRouter({
+  routeTree,
+  context: { queryClient }, // 👈 inject shared deps here
+});
 
 // Register the router instance for type safety
 declare module "@tanstack/react-router" {

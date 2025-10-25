@@ -89,7 +89,7 @@ const Login = () => {
                 <Button
                   type="button"
                   variant="link"
-                  className="text-sm text-accent hover:text-accent/80"
+                  className="text-sm text-sky-500 hover:text-sky-500/80"
                   onClick={() => setActiveTab("login")}
                 >
                   Back to login
@@ -103,14 +103,14 @@ const Login = () => {
               By continuing, you agree to our{" "}
               <a
                 href="#"
-                className="text-accent hover:text-accent/80 underline"
+                className="text-sky-500 hover:text-sky-500/80 underline"
               >
                 Terms of Service
               </a>{" "}
               and{" "}
               <a
                 href="#"
-                className="text-accent hover:text-accent/80 underline"
+                className="text-sky-500 hover:text-sky-500/80 underline"
               >
                 Privacy Policy
               </a>

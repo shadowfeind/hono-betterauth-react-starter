@@ -102,7 +102,7 @@ export const LoginForm = ({ setActiveTab }: Props) => {
         <Button
           type="button"
           variant="link"
-          className="px-0 text-sm text-accent hover:text-accent/80"
+          className="px-0 text-sm text-sky-500 hover:text-sky-500/80"
           onClick={() => setActiveTab("forgot")}
         >
           Forgot password?
