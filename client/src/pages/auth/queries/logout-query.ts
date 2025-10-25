@@ -18,6 +18,7 @@ export const useLogout = () => {
     },
     onSuccess: () => {
       clearAuth();
+      useAuthStore.persist.clearStorage?.();
       toast.success("Logged out successfully");
       navigate({ to: "/auth", replace: true });
     },
