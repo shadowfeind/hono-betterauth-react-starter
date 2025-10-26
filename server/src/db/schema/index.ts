@@ -4,6 +4,7 @@ export * from "./order.schema";
 export * from "./orderItem.schema";
 export * from "./relations/order.relations";
 export * from "./relations/productCategory.relations";
+export * from "./relations/userTest.relations";
 export * from "./product.schema";
 export * from "./category.schema";
 export * from "./productCategory.schema";
