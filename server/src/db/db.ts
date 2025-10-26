@@ -5,5 +5,5 @@ import * as schema from "@/db/schema";
 
 export function createDb(url: string): NeonHttpDatabase<typeof schema> {
   const sql = neon(url);
-  return drizzle(sql, { schema, casing: "snake_case" });
+  return drizzle(sql, { schema, logger: true });
 }
